@@ -6,10 +6,20 @@ const { db } = require("../config/db");
 const PRIORIDADES = ["baixa", "media", "alta"];
 const STATUS = ["a_fazer", "fazendo", "feita"];
 
-// H01 - Lista como tarefas
+// H01 - Lista como tarefas + Bônus B1 (Filtros)
 async function listarTarefas(filtros) {
   const [linhas] = await db.query("SELECT * FROM tarefas");
   let resultado = linhas;
+
+  if (filtros.status) {
+    resultado = resultado.filter((tarefa) => tarefa.status === filtros.status);
+  }
+  if (filtros.prioridade) {
+    resultado = resultado.filter(
+      (tarefa) => tarefa.prioridade === filtros.prioridade
+    );
+  }
+
   return resultado;
 }
 
