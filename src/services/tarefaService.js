@@ -6,10 +6,20 @@ const { db } = require("../config/db");
 const PRIORIDADES = ["baixa", "media", "alta"];
 const STATUS = ["a_fazer", "fazendo", "feita"];
 
+// H01
 async function listarTarefas(filtros) {
   const [linhas] = await db.query("SELECT * FROM tarefas");
   let resultado = linhas;
   return resultado;
 }
 
-module.exports = { listarTarefas };
+// H02
+async function buscarTarefaPorId(id) {
+  const [linhas] = await db.query("SELECT * FROM tarefas WHERE id = ?", [id]);
+  return linhas[0];
+}
+
+module.exports = { 
+  listarTarefas,
+  buscarTarefaPorId
+ };
