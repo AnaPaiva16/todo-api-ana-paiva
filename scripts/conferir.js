@@ -11,7 +11,7 @@ require("dotenv").config({ quiet: true });
 const GRUPOS = {
   1: "Sprint 1 — Tarefas",
   2: "Sprint 2 — Categorias e relacionamento",
-  bonus: "Bonus — desafios",
+  bonus: "Bonus — Desafios",
 };
 
 // ----- Ajudantes -----
