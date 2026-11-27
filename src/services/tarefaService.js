@@ -8,7 +8,9 @@ const STATUS = ["a_fazer", "fazendo", "feita"];
 
 // H01 - Lista como tarefas + Bônus B1 (Filtros)
 async function listarTarefas(filtros) {
-  const [linhas] = await db.query("SELECT tarefas.*, categorias.nome AS categoria FROM tarefas LEFT JOIN categorias ON tarefas.categoria_id = tarefas.id",);
+  const [linhas] = await db.query(
+    "SELECT tarefas.*, categorias.nome AS categoria FROM tarefas LEFT JOIN categorias ON tarefas.categoria_id = categorias.id"
+  );
   let resultado = linhas;
 
   if (filtros.status) {
@@ -25,15 +27,18 @@ async function listarTarefas(filtros) {
 
 // H02 - Buscar tarefa por ID
 async function buscarTarefaPorId(id) {
-  const [linhas] = await db.query("SELECT tarefas.*, categorias.nome AS categoria FROM tarefas LEFT JOIN categorias ON tarefas.categoria_id = categorias.id WHERE tarefas.id = ?",);
+  const [linhas] = await db.query(
+    "SELECT tarefas.*, categorias.nome AS categoria FROM tarefas LEFT JOIN categorias ON tarefas.categoria_id = categorias.id WHERE tarefas.id = ?",
+    [id]
+  );
   return linhas[0];
 }
 
 // H03 - Cadastrar tarefa
 async function criarTarefa(dados) {
   const [resultado] = await db.query(
-    "INSERT INTO tarefas (titulo, prioridade, status) VALUES (?, ?, ?, ?)",
-    [dados.titulo, dados.prioridade, dados.status, dados.nome]
+    "INSERT INTO tarefas (titulo, prioridade, status, categoria_id) VALUES (?, ?, ?, ?)",
+    [dados.titulo, dados.prioridade, dados.status, dados.categoria_id]
   );
   return await buscarTarefaPorId(resultado.insertId);
 }
@@ -42,7 +47,7 @@ async function criarTarefa(dados) {
 async function atualizarTarefa(id, dados) {
   const [resultado] = await db.query(
     "UPDATE tarefas SET titulo = ?, prioridade = ?, status = ?, categoria_id = ? WHERE id = ?",
-    [dados.titulo, dados.prioridade, dados.status, dados.categoria_id, dados.nome]
+    [dados.titulo, dados.prioridade, dados.status, dados.categoria_id, id]
   );
   if (resultado.affectedRows === 0) return null;
   return await buscarTarefaPorId(id);
@@ -88,7 +93,7 @@ function validarTarefa(dados, completo) {
   return null;
 }
 
-module.exports = { 
+module.exports = {
   listarTarefas,
   buscarTarefaPorId,
   criarTarefa,
@@ -96,4 +101,4 @@ module.exports = {
   atualizarParcialTarefa,
   deletarTarefa,
   validarTarefa,
- };
+};

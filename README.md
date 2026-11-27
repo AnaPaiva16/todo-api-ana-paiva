@@ -118,7 +118,7 @@ npm run conferir
 ## Testes e Placar (`npm run conferir`)
 
 * **Sprint 1:** 14 de 14 · **Bônus:** 2 de 5
-* **Sprint 2:** _(preencher)_ de 14 · **Sprint 2 (Categorias):** _(preencher)_ de 8 · **Bônus:** _(preencher)_ de 5
+* **Sprint 2:** 14 de 14 · **Sprint 2 (Categorias):** 8 de 8 · **Bônus:** 2 de 5
 
 ---
 
