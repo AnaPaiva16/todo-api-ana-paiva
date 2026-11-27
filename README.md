@@ -18,7 +18,7 @@ _(Sprint 2: uma linha para cada rota da API)_
 
 | Método | Rota | O que faz | Status de sucesso |
 |---|---|---|:---:|
-| GET | /tarefas | _(preencher)_ | 200 |
+| GET | /tarefas | Lista todas as tarefas (com suporte a filtros por status e prioridade) | 200 |
 
 ## Diagrama de classes
 
@@ -28,7 +28,7 @@ _(Sprint 2: uma linha para cada rota da API)_
 
 # Acompanhamento do projeto
 
-**Quadro usado:** _(preencher: GitHub Projects ou Trello)_
+**Quadro usado:** GitHub Projects
 
 ## Sprint 1 — Tarefas
 
@@ -40,7 +40,7 @@ _(Sprint 2: uma linha para cada rota da API)_
 
 ![Quadro no fim do Sprint 1](docs/sprint1-fim.png)
 
-**Placar do `npm run conferir`:** Sprint 1: _(preencher)_ de 14 · Bônus: _(preencher)_ de 5
+**Placar do `npm run conferir`:** Sprint 1: 14 de 14 · Bônus: 2 de 5
 
 ## Sprint 2 — Categorias e relacionamento
 
