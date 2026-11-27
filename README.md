@@ -74,7 +74,7 @@ npm run conferir
 
 ## Rotas da API (Endpoints)
 
-### Tarefas
+### Tarefas SPRINT's 1 e 2
 
 | Método | Rota | Descrição | Status de Sucesso |
 | :--- | :--- | :--- | :---: |
@@ -84,6 +84,10 @@ npm run conferir
 | `PUT` | `/tarefas/:id` | Atualiza todos os dados de uma tarefa pelo ID | `200` |
 | `PATCH` | `/tarefas/:id` | Atualiza parcialmente os dados de uma tarefa pelo ID | `200` |
 | `DELETE` | `/tarefas/:id` | Remove uma tarefa pelo ID | `204` |
+| `GET` | `/categorias` | Lista todas as categorias | `200` |
+| `GET` | `/categorias/:id` | Busca uma categoria específica pelo ID | `200` |
+| `POST` | `/categorias` | Cadastra uma nova categoria | `201` |
+| `DELETE` | `/categorias/:id` | Remove uma categoria pelo ID | `204` |
 
 ---
 
