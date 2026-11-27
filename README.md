@@ -19,6 +19,12 @@ _(Sprint 2: uma linha para cada rota da API)_
 | Método | Rota | O que faz | Status de sucesso |
 |---|---|---|:---:|
 | GET | /tarefas | Lista todas as tarefas (com suporte a filtros por status e prioridade) | 200 |
+| GET | /tarefas/:id | Busca uma tarefa específica pelo ID | 200 |
+| POST | /tarefas | Cadastra uma nova tarefa | 201 |
+| PUT | /tarefas/:id | Atualiza todos os dados de uma tarefa pelo ID | 200 |
+| PATCH | /tarefas/:id | Atualiza parcialmente uma tarefa pelo ID | 200 |
+| DELETE | /tarefas/:id | Remove uma tarefa pelo ID | 204 |
+## Endpoints
 
 ## Diagrama de classes
 
