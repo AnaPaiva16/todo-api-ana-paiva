@@ -2,13 +2,13 @@
 
 const tarefaService = require("../services/tarefaService");
 
-// H01
+// H01 - Lista como tarefas
 async function listar(req, res) {
   const tarefas = await tarefaService.listarTarefas(req.query);
   res.status(200).json(tarefas);
 }
 
-// H02
+// H02 - Buscar tarefa por ID
 async function buscarPorId(req, res) {
   const tarefa = await tarefaService.buscarTarefaPorId(req.params.id);
   if (!tarefa) {
@@ -18,7 +18,13 @@ async function buscarPorId(req, res) {
   res.status(200).json(tarefa);
 }
 
+// H03 - Cadastrar uma tarefa
+async function criar(req, res) {
+  const novaTarefa = await tarefaService.criarTarefa(req.body);
+  res.status(201).json(novaTarefa);
+}
 module.exports = { 
   listar,
-  buscarPorId
+  buscarPorId,
+  criar,
  };
