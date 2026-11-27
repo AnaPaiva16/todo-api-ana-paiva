@@ -8,7 +8,7 @@ const STATUS = ["a_fazer", "fazendo", "feita"];
 
 // H01 - Lista como tarefas + Bônus B1 (Filtros)
 async function listarTarefas(filtros) {
-  const [linhas] = await db.query("SELECT * FROM tarefas");
+  const [linhas] = await db.query("SELECT tarefas.*, categorias.nome AS categoria FROM tarefas LEFT JOIN categorias ON tarefas.categoria_id = tarefas.id",);
   let resultado = linhas;
 
   if (filtros.status) {
@@ -25,15 +25,15 @@ async function listarTarefas(filtros) {
 
 // H02 - Buscar tarefa por ID
 async function buscarTarefaPorId(id) {
-  const [linhas] = await db.query("SELECT * FROM tarefas WHERE id = ?", [id]);
+  const [linhas] = await db.query("SELECT tarefas.*, categorias.nome AS categoria FROM tarefas LEFT JOIN categorias ON tarefas.categoria_id = categorias.id WHERE tarefas.id = ?",);
   return linhas[0];
 }
 
 // H03 - Cadastrar tarefa
 async function criarTarefa(dados) {
   const [resultado] = await db.query(
-    "INSERT INTO tarefas (titulo, prioridade, status) VALUES (?, ?, ?)",
-    [dados.titulo, dados.prioridade, dados.status]
+    "INSERT INTO tarefas (titulo, prioridade, status) VALUES (?, ?, ?, ?)",
+    [dados.titulo, dados.prioridade, dados.status, dados.nome]
   );
   return await buscarTarefaPorId(resultado.insertId);
 }
@@ -41,8 +41,8 @@ async function criarTarefa(dados) {
 // H04 - Alterar tarefa completa (PUT)
 async function atualizarTarefa(id, dados) {
   const [resultado] = await db.query(
-    "UPDATE tarefas SET titulo = ?, prioridade = ?, status = ? WHERE id = ?",
-    [dados.titulo, dados.prioridade, dados.status, id]
+    "UPDATE tarefas SET titulo = ?, prioridade = ?, status = ?, categoria_id = ? WHERE id = ?",
+    [dados.titulo, dados.prioridade, dados.status, dados.categoria_id, dados.nome]
   );
   if (resultado.affectedRows === 0) return null;
   return await buscarTarefaPorId(id);
@@ -56,6 +56,7 @@ async function atualizarParcialTarefa(id, dados) {
   if (dados.titulo !== undefined) tarefa.titulo = dados.titulo;
   if (dados.prioridade !== undefined) tarefa.prioridade = dados.prioridade;
   if (dados.status !== undefined) tarefa.status = dados.status;
+  if (dados.categoria_id !== undefined) tarefa.categoria_id = dados.categoria_id;
 
   return await atualizarTarefa(id, tarefa);
 }
