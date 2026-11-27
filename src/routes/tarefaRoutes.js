@@ -12,5 +12,9 @@ router.get("/", tarefaController.listar);
 router.get("/:id", validarId, tarefaController.buscarPorId);
 // H03 - Cadastrar tarefa
 router.post("/", tarefaController.criar);
+// H04 - Alterar tarefa completa (PUT)
+router.put("/:id", validarId, tarefaController.atualizar);
+// H04 - Alterar tarefa parcialmente (PATCH)
+router.patch("/:id", validarId, tarefaController.atualizarParcial);
 
 module.exports = router;
