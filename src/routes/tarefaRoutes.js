@@ -16,5 +16,7 @@ router.post("/", tarefaController.criar);
 router.put("/:id", validarId, tarefaController.atualizar);
 // H04 - Alterar tarefa parcialmente (PATCH)
 router.patch("/:id", validarId, tarefaController.atualizarParcial);
+// H05 - Apagar uma tarefa (DELETE)
+router.delete("/:id", validarId, tarefaController.deletar);
 
 module.exports = router;
